@@ -1,0 +1,24 @@
+.home-container {
+    height: 80vh;
+    background-image: url('https://i.pinimg.com/originals/f5/f2/fc/f5f2fc5ba52603c5ea602b8202ad529a.gif');
+    background-size: cover;
+    padding-bottom: 10rem;
+}
+
+.play-btn {
+    border: 2px solid white !important;
+    padding: 12px 25px !important;
+    height: 2.5rem !important;
+    z-index: 10;
+}
+
+.logo {    
+    position: relative;
+}
+
+.logo img {
+    height: 50rem;
+    position: absolute;
+    z-index: 9;
+    top: -32rem;
+}
