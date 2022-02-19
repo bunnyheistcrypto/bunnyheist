@@ -1,0 +1,10 @@
+.game-body {
+    background: #111;
+    display: grid;
+    place-items: center;
+    min-height: 90vh !important;
+    overflow: hidden;
+  }
+  canvas {
+    border-radius: 12px;
+  }

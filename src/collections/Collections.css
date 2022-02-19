@@ -1,0 +1,29 @@
+.collection-container {
+    padding: 5rem 0 3rem;
+    background: bisque;
+    height: 90vh;
+}
+
+.collection-box {
+    z-index: 10;
+    padding: 0.5rem 0.5rem;
+    border-radius: 10px;
+    width: 85%;
+}
+
+.collection-collapse {
+    background-color: transparent;
+    border-radius: 5px;
+    border-color: black;
+    font-family: 'grobold' !important;
+}
+
+.collection-collapse .ant-collapse-item, .collection-collapse .ant-collapse-content {
+    border-color: black;
+    border-radius: 5px;
+
+}
+
+.collection-collapse .ant-collapse-content {
+    background-color: #ffc8d4;
+}

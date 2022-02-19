@@ -1,16 +1,24 @@
 
 import React from 'react';
-import { Button, Row, Typography } from "antd";
+import { useCurrentBreakpoint } from '../hooks';
+import { Button, Row, Typography, Col } from "antd";
+import logo from '../gltf/logo.png'
 import './Home.css';
-import logo from '../gltf/coelho.png'
 
 export const FirstBanner = () => {
+    const { isMobile } = useCurrentBreakpoint();
     return (
-        <Row className='home-container' align='bottom' justify='center'>
-            <Button type='primary' className='play-btn' href='/game'><Typography.Title level={3} style={{ color: 'white' }}>Play Now</Typography.Title></Button>        
-            {/* <div className="logo">
-              <img src={logo} />
-            </div> */}
-        </Row>
+        <Col className='home-container' align='bottom' justify='center'>
+            <Row align='bottom' justify='center'>
+                <img src={logo} className={'logo-image'} alt={'Bunny Heist Logo'}/>
+            </Row>
+            <Row align='bottom' justify='center'>
+                <div className='play-container' onClick={() => window.location = '/game'}>
+                    <div className={isMobile ? 'play-btn play-btn-mobile' : 'play-btn play-btn-desk'} />
+                    <Button type='primary' className={isMobile ? 'play play-mobile' : 'play play-desk'} href='/game'><Typography.Text>Play Now</Typography.Text></Button>        
+                    <div className={isMobile ? 'play-btn play-btn-mobile reverse' : 'play-btn play-btn-desk reverse'} />
+                </div>
+            </Row>
+        </Col>
     );
 }

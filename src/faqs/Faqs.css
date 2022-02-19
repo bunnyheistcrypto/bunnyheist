@@ -1,0 +1,30 @@
+.faqs-container {
+    padding: 5rem 0 3rem;
+    background: bisque;
+    height: 90vh;
+}
+
+.faqs-box {
+    z-index: 10;
+    background-color: aquamarine;
+    padding: 0.5rem 0.5rem;
+    border-radius: 10px;
+    width: 85%;
+}
+
+.faqs-collapse {
+    background-color: transparent;
+    border-radius: 5px;
+    border-color: black;
+    font-family: 'grobold' !important;
+}
+
+.faqs-collapse .ant-collapse-item, .faqs-collapse .ant-collapse-content {
+    border-color: black;
+    border-radius: 5px;
+
+}
+
+.faqs-collapse .ant-collapse-content {
+    background-color: #ffc8d4;
+}

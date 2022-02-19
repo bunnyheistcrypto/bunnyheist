@@ -1,6 +1,7 @@
 html, body {
   max-width: 100%;
   overflow-x: hidden;
+  font-family: 'aAttackGraffiti' !important;
 }
 
 .App {
@@ -18,16 +19,77 @@ html, body {
   }
 }
 
-.App-header {
-  background-image: url('https://farmersworld.io/images/header-bg.png') !important;
-  background-size: cover;
-  background-color: transparent !important;
-  position: fixed;
-  z-index: 99;
-  padding: 0 !important;
+@font-face {
+  font-family: 'aAttackGraffiti';
+  src: local('aAttackGraffiti'), url(./fonts/a_attack_graffiti/aAttackGraffiti.ttf) format('truetype');
 }
 
-.App-header ul {
+@font-face {
+  font-family: 'grobold';
+  src: url(./fonts/GROBOLD.ttf);
+}
+
+.site-layout {
+  min-height: 100vh !important;
+}
+
+.mobile-app-header {
+  background-image: url('./gltf/header.png') !important;
+  background-size: cover !important;
+  background-color: transparent !important;
+  background-position: center center !important;
+  z-index: 9;
+  position: fixed;
+  padding: 0 !important;
+  width: 100%;
+  height: 180px !important;
+}
+
+.App-header {
+  background-image: url('./gltf/header.png') !important;
+  background-repeat: no-repeat !important;
+  background-size: 100% 100% !important;
+  background-color: transparent !important;
+  background-position: top center !important;
+  z-index: 9;
+  position: fixed;
+  padding: 0 6% !important;
+  width: 100%;
+  height: 19% !important;
+}
+
+.App-header span, .mobile-app-header span  , .ant-menu-title-content {
+  font-size: 24px !important;
+  font-family: aAttackGraffiti, serif;
+  color: black
+}
+
+.App-header ul, .mobile-app-header ul {
+  justify-content: center !important;
+}
+
+.ant-menu-sub {
+  background-color: #baffff !important;
+}
+
+.ant-menu-item-only-child { 
+  text-align: center;
+}
+
+.ant-menu-item-selected {
+  background-color: transparent !important;
+  background-image: url('./gltf/splash-removebg-preview.png') !important;
+  background-size: 100% 5rem;
+  background-position-y: center;
+  transition: none !important;
+}
+
+.ant-menu-item:hover {
+  background-color: transparent !important;
+  color: aqua !important;
+}
+
+.App-header ul, .mobile-app-header ul {
   background-color: transparent !important;
 }
 

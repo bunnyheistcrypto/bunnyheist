@@ -1,17 +1,28 @@
-
 import React from 'react';
-import UAParser from "ua-parser-js";
 import Carousel from "react-multi-carousel";
-import { Typography, Row } from 'antd';
+import coelho from '../gltf/coelhoBixeiro.jpeg';
+import UAParser from "ua-parser-js";
 import { Image } from "semantic-ui-react";
-import testNft from '../gltf/coelhoBixeiro.jpeg';
 import 'react-multi-carousel/lib/styles.css';
-import './Home.css';
+import '../home/Home.css';
+import './Collections.css';
+import testNft from '../gltf/coelhoBixeiro.jpeg';
+import { Col, Row } from 'antd';
 
-export const SecondBanner = () => {
+const contentStyle = {
+    height: '160px',
+    color: '#fff',
+    lineHeight: '160px',
+    textAlign: 'center',
+    background: '#364d79',
+  };
+
+export const CollectionsLayout = () => {
     const userAgent = navigator.userAgent;
     const parser = new UAParser();
     parser.setUA(userAgent);
+    const result = parser.getResult();
+    const deviceType = (result.device && result.device.type) || "desktop";
 
     const responsive = {
         superLargeDesktop: {
@@ -49,31 +60,29 @@ export const SecondBanner = () => {
         "https://images.unsplash.com/photo-1549985908-597a09ef0a7c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
         "https://images.unsplash.com/photo-1550064824-8f993041ffd3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
       ];
-
     return (
-        <div className='carousel-container'>
-            <Row align='bottom' justify='center'>
-                <div className='title'>
-                    <Typography.Text style={{ color: 'black' }}>Collections</Typography.Text>
-                </div>        
+        <Col className='collection-container' align='bottom' justify='center'>
+            <Row align='start' justify='center'>
+                <div className='collection-box'>
+                    <Carousel
+                        ssr
+                        responsive={responsive}
+                        itemClass={'image-item'}
+                        infinite
+                    >
+                        {images.slice(0, 5).map(image => {
+                            return (
+                                <Image
+                                    key={image}
+                                    draggable={false}
+                                    style={{ width: "65%", height: "70%", borderRadius: '10px' }}
+                                    src={image}
+                                />
+                            );
+                        })}
+                    </Carousel>
+                </div>
             </Row>
-            <Carousel
-                ssr
-                responsive={responsive}
-                itemClass={'image-item'}
-                infinite
-            >
-                {images.slice(0, 5).map(image => {
-                    return (
-                        <Image
-                            key={image}
-                            draggable={false}
-                            style={{ width: "65%", height: "70%", borderRadius: '10px' }}
-                            src={image}
-                        />
-                    );
-                })}
-            </Carousel>
-        </div>
+        </Col>
     );
 }
