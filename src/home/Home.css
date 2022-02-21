@@ -3,6 +3,16 @@
     background: bisque;
 }
 
+.play-now {
+    padding: 5rem 0 3rem;
+    background: black;
+    background-size: 100% 100% !important;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .play-container {
     display: flex;
     align-items: center;
@@ -93,7 +103,6 @@
 
 .image-item {
     background-image: url('../gltf/imageFrame.png');
-    background-size: 70% 100%;
     background-repeat: no-repeat;
     padding: 10px 10px;
     background-position: bottom;
@@ -101,6 +110,18 @@
     justify-content: center;
     align-items: flex-end;
     padding: 10px 10px;
+}
+
+.image-item-desktop {
+    background-size: 20rem 24rem;
+    height: 25rem;
+
+}
+
+.image-item-mobile {
+    background-size: 13rem 100%;
+    height: 21rem;
+
 }
 
 .carousel-container {

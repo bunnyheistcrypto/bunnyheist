@@ -26,7 +26,8 @@ export default class Player {
         this.self.sprite = this.scene.add.sprite(PLAYER_START_X, PLAYER_START_Y, PLAYER);
         this.self.sprite.displayHeight = PLAYER_HEIGHT;
         this.self.sprite.displayWidth = PLAYER_WIDTH;
-    
+        this.self.sprite.setDepth(1);
+        
         this.self.sprite.setInteractive();
     }
 }

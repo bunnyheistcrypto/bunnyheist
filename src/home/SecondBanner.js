@@ -7,8 +7,10 @@ import { Image } from "semantic-ui-react";
 import testNft from '../gltf/coelhoBixeiro.jpeg';
 import 'react-multi-carousel/lib/styles.css';
 import './Home.css';
+import { useCurrentBreakpoint } from '../hooks';
 
 export const SecondBanner = () => {
+    const { isMobile } = useCurrentBreakpoint();
     const userAgent = navigator.userAgent;
     const parser = new UAParser();
     parser.setUA(userAgent);
@@ -17,12 +19,12 @@ export const SecondBanner = () => {
         superLargeDesktop: {
             // the naming can be any, depends on you.
             breakpoint: { max: 4000, min: 3000 },
-            items: 2,
+            items: 3,
             paritialVisibilityGutter: 10
         },
         desktop: {
             breakpoint: { max: 3000, min: 1024 },
-            items: 2,
+            items: 3,
             paritialVisibilityGutter: 10
         },
         tablet: {
@@ -60,7 +62,7 @@ export const SecondBanner = () => {
             <Carousel
                 ssr
                 responsive={responsive}
-                itemClass={'image-item'}
+                itemClass={ isMobile ? 'image-item image-item-mobile' : 'image-item image-item-desktop' }
                 infinite
             >
                 {images.slice(0, 5).map(image => {
@@ -68,7 +70,7 @@ export const SecondBanner = () => {
                         <Image
                             key={image}
                             draggable={false}
-                            style={{ width: "65%", height: "70%", borderRadius: '10px' }}
+                            style={{ width: isMobile ? "12rem" : "17rem", height: isMobile ? "14.5rem" : "70%", borderRadius: '10px' }}
                             src={image}
                         />
                     );

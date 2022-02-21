@@ -1,22 +1,37 @@
 
 import React, { useEffect, useState } from 'react';
 import Phaser from 'phaser';
+import { useDispatch, useSelector } from 'react-redux';
 import { useCurrentBreakpoint } from './hooks';
-import { Layout, Menu } from 'antd';
-
-import { config } from './game/GameRun';
+import { Button, Layout, Menu, Col, Row, Typography } from 'antd';
 import { MenuOutlined } from '@ant-design/icons';
 
+import { config } from './game/GameRun';
+import { getPlayerInfo, getWallet } from './data/player/selector';
+import { LoginModal } from './login/LoginModal';
 import './game/Game.css';
+import { setPlayerWallet } from './data/player/action';
+
 
 const { Content, Footer, Header } = Layout;
   
 export const AppGame = () => {
+  const dispatch = useDispatch();
   const { isMobile } = useCurrentBreakpoint();
   const [navbar, setNavbar] = useState('3');
+  const playerWallet = useSelector(state => getWallet(state));
+  const [isLoginVisible, setIsLoginVisible] = useState(false);
+
+  const handleOk = () => {
+    setIsLoginVisible(false);
+    dispatch(setPlayerWallet(true))
+  }
+
   useEffect(() => {
-    new Phaser.Game(config);
-  },[])
+    if(playerWallet) {
+      new Phaser.Game(config);
+    }
+  },[playerWallet, isLoginVisible])
   return (
     <Layout className="site-layout" style={{ overflow: 'auto' }}>
         <Header className={isMobile ? 'mobile-app-header' : 'App-header'}>
@@ -27,7 +42,24 @@ export const AppGame = () => {
             </Menu>
         </Header>
         <Content >
-          <div className="game-body" id='game-here' />
+          {playerWallet
+            ? <div className="game-body" id='game-here' />
+            : <Col className='play-now'>
+                <Row align='bottom' justify='center'>
+                  <LoginModal isVisible={isLoginVisible} setIsVisible={setIsLoginVisible} handleOk={handleOk}/>
+                    <div className='play-container' onClick={() => setIsLoginVisible(true)}>
+                        <div className={isMobile ? 'play-btn play-btn-mobile' : 'play-btn play-btn-desk'} />
+                          <Button
+                            type='primary'
+                            className={isMobile ? 'play play-mobile' : 'play play-desk'}
+                          >
+                              <Typography.Text style={{ color: 'white' }}>Play Now</Typography.Text>
+                          </Button>        
+                        <div className={isMobile ? 'play-btn play-btn-mobile reverse' : 'play-btn play-btn-desk reverse'} />
+                    </div>
+                </Row>
+              </Col>
+          }          
         </Content>
         <Footer style={{ fontFamily: 'grobold' }}>COPYRIGHT BUNNY HEIST 2022. ALL RIGHTS RESERVED.</Footer>
     </Layout>
