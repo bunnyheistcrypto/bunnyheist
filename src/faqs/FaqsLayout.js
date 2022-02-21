@@ -1,8 +1,7 @@
 
 import React from 'react';
-import { Collapse, Col, List, Row, Typography } from "antd";
+import { Collapse, Col, Row, Typography } from "antd";
 import './Faqs.css';
-import frame from '../gltf/imageFrame.png';
 
 const { Panel } = Collapse;
 

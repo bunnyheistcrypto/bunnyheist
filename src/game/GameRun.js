@@ -1,13 +1,15 @@
 import Phaser from 'phaser';
+import { Plugin as NineSlicePlugin } from 'phaser3-nineslice'
 import { movePlayer } from './movement';
-import { animateMovement } from './animation';
+// import { animateMovement } from './animation';
 import Player from './player/player';
 import Map from './map/map';
-import { ActionsBase } from './actions/actions';
 import { PLAYER } from './constants';
 import { connect } from 'react-redux';
 import { getPlayerInfo } from '../data/player/selector';
 import store from '../store';
+import LifeBar from './objects/lifeBar/lifeBar';
+import Menu from './objects/menu/menu';
 
 let pressedKeys = [];
 
@@ -17,21 +19,22 @@ class MyGame extends Phaser.Scene {
     this.reducer = store;
     this.map = new Map(this, this.reducer);
     this.player = new Player(this);
+    this.life = new LifeBar(this);
+    this.menu = new Menu(this);
   }
 
   preload() {
-    this.map.preLoad();
+    this.map.preLoad(this.menu);
     this.player.preLoad();
+    this.life.preLoad();
+    this.menu.preLoad();
   }
 
   create() {
     this.map.setSprite();
     this.player.setSprite();
-
-    // const t = this.add.text(32, 32, "this text is fixed to the camera", { font: "32px Arial", fill: "#ffffff", align: "center" });
-    // t.setScrollFactor(0);
-
-    this.input.on('gameobjectdown', (e, o) => ActionsBase(e, o, this.reducer, this.player));
+    this.life.setSprite();
+    this.menu.setSprite();
     
     this.anims.create({
       key: 'running',
@@ -70,5 +73,8 @@ export const config = {
   parent: 'game-here',
   width: 800,
   height: 550,
+  plugins: {
+    global: [ NineSlicePlugin.DefaultCfg ],
+  },
   scene: MyGame,
 };

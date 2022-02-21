@@ -7,7 +7,7 @@ import { Button, Layout, Menu, Col, Row, Typography } from 'antd';
 import { MenuOutlined } from '@ant-design/icons';
 
 import { config } from './game/GameRun';
-import { getPlayerInfo, getWallet } from './data/player/selector';
+import { getWallet } from './data/player/selector';
 import { LoginModal } from './login/LoginModal';
 import './game/Game.css';
 import { setPlayerWallet } from './data/player/action';

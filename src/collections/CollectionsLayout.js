@@ -1,6 +1,5 @@
 import React from 'react';
 import Carousel from "react-multi-carousel";
-import coelho from '../gltf/coelhoBixeiro.jpeg';
 import UAParser from "ua-parser-js";
 import { Image } from "semantic-ui-react";
 import 'react-multi-carousel/lib/styles.css';
@@ -10,22 +9,12 @@ import testNft from '../gltf/coelhoBixeiro.jpeg';
 import { Col, Row } from 'antd';
 import { useCurrentBreakpoint } from '../hooks';
 
-const contentStyle = {
-    height: '160px',
-    color: '#fff',
-    lineHeight: '160px',
-    textAlign: 'center',
-    background: '#364d79',
-  };
-
 export const CollectionsLayout = () => {
     const { isMobile } = useCurrentBreakpoint();
 
     const userAgent = navigator.userAgent;
     const parser = new UAParser();
     parser.setUA(userAgent);
-    const result = parser.getResult();
-    const deviceType = (result.device && result.device.type) || "desktop";
 
     const responsive = {
         superLargeDesktop: {

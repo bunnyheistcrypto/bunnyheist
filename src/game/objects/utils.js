@@ -1,4 +1,4 @@
-import { PLAYER_HEIGHT, PLAYER_WIDTH } from "../player/constants";
+import { PLAYER_WIDTH } from "../player/constants";
 
 export const proximity = (player, objectX, objectY) => {
     if(

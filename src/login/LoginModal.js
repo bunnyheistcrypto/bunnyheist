@@ -1,7 +1,5 @@
 import { Modal } from "antd";
 import React from "react";
-import { useDispatch } from "react-redux";
-import { setPlayerInfo } from "../data/player/action";
 
 export const LoginModal = ({isVisible, setIsVisible, handleOk}) => {
     return (
