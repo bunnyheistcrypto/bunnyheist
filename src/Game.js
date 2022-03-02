@@ -34,13 +34,15 @@ export const AppGame = () => {
   },[playerWallet, isLoginVisible])
   return (
     <Layout className="site-layout" style={{ overflow: 'auto' }}>
-        <Header className={isMobile ? 'mobile-app-header' : 'App-header'}>
-            <Menu theme="dark" mode="horizontal" defaultSelectedKeys={[navbar]} onClick={(e) => setNavbar(e.key)} overflowedIndicator={<MenuOutlined />} >
-                <Menu.Item key={3}>Play</Menu.Item>
-                <Menu.Item key={1} onClick={() => window.location = '/'}>WebSite</Menu.Item>
-                <Menu.Item key={2}>Market Place</Menu.Item>
-            </Menu>
-        </Header>
+      {!playerWallet &&
+          <Header className={isMobile ? 'mobile-app-header' : 'App-header'}>
+              <Menu theme="dark" mode="horizontal" defaultSelectedKeys={[navbar]} onClick={(e) => setNavbar(e.key)} overflowedIndicator={<MenuOutlined />} >
+                  <Menu.Item key={3}>Play</Menu.Item>
+                  <Menu.Item key={1} onClick={() => window.location = '/'}>WebSite</Menu.Item>
+                  <Menu.Item key={2}>Market Place</Menu.Item>
+              </Menu>
+          </Header>
+      }
         <Content >
           {playerWallet
             ? <div className="game-body" id='game-here' />

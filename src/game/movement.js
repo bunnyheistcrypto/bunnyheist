@@ -1,12 +1,13 @@
 import { PLAYER_SPEED, SHIP_HEIGHT, SHIP_WIDTH } from './player/constants';
 import { mapBounds } from './mapBounds';
-import { boxCollider } from './objects/box/utils';
+import { mesaCollider } from './objects/box/utils';
 
 const otherObjectsBoundaries = (x, y, state) => {
-  return !boxCollider(x, y, state);
+  return !mesaCollider(x, y, state);
 }
 
 const isWithinMovementBoundaries = (x, y) => {
+  return true
   return !mapBounds[y] ? true : !mapBounds[y].includes(x);
 };
 

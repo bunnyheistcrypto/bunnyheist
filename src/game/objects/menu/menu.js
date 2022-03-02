@@ -50,7 +50,7 @@ export default class Menu {
         const text = this.scene.add.text(
             -panel.width + 35,
             35,
-            'TESTANDO',
+            'Tetstando',
             {
                 color: 'black',
                 fontSize: 28

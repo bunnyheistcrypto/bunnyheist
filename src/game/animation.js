@@ -1,5 +1,5 @@
 export const animateMovement = (keys, player) => {
-  const runningKeys = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'];
+  const runningKeys = ['KeyW', 'KeyS', 'KeyA', 'KeyD'];
   if (
     keys.some((key) => runningKeys.includes(key)) &&
     !player.anims.isPlaying

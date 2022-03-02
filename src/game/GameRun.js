@@ -1,7 +1,7 @@
 import Phaser from 'phaser';
 import { Plugin as NineSlicePlugin } from 'phaser3-nineslice'
 import { movePlayer } from './movement';
-// import { animateMovement } from './animation';
+import { animateMovement } from './animation';
 import Player from './player/player';
 import Map from './map/map';
 import { PLAYER } from './constants';
@@ -31,6 +31,7 @@ class MyGame extends Phaser.Scene {
   }
 
   create() {
+    this.cameras.main.setBackgroundColor('#FFF')
     this.map.setSprite();
     this.player.setSprite();
     this.life.setSprite();
@@ -55,10 +56,9 @@ class MyGame extends Phaser.Scene {
 
   update() {
     const state = this.reducer.getState();
-    this.map.gameRuning(state);
-    this.scene.scene.cameras.main.centerOn(this.player.self.sprite.x, this.player.self.sprite.y);
+    // this.scene.scene.cameras.main.centerOn(this.player.self.sprite.x, this.player.self.sprite.y);
     movePlayer(pressedKeys, this.player.self.sprite, state);
-    // animateMovement(pressedKeys, this.player.self.sprite);
+    animateMovement(pressedKeys, this.player.self.sprite);
   }
 }
 
@@ -70,9 +70,21 @@ export default connect(mapStateToProps, null)(MyGame)
 
 export const config = {
   type: Phaser.AUTO,
+  backgroundColor: '#2dab2d',
+  scale: {
+      mode: Phaser.Scale.FIT,
+      width: 1200,
+      height: 800,
+      min: {
+          width: 800,
+          height: 600
+      },
+      max: {
+          width: 1600,
+          height: 800
+      }
+  },
   parent: 'game-here',
-  width: 800,
-  height: 550,
   plugins: {
     global: [ NineSlicePlugin.DefaultCfg ],
   },

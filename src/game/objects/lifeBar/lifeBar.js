@@ -16,6 +16,9 @@ export default class LifeBar {
     setSprite (state) {
         this.self.energy1 = this.scene.add.image(32, 32, LIFE_BAR);
         this.self.energy1.setScrollFactor(0);
+
+        // this.self.energy1.setTintFill(0xffffff, 0xffffff, 0x000000 );
+        // this.self.energy1.setAlpha(0.5);
         this.self.energy1.displayHeight = 60;
         this.self.energy1.displayWidth = 40;
 

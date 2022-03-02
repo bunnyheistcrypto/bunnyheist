@@ -7,7 +7,7 @@ import {
     PLAYER_START_X,
     PLAYER_START_Y,
 } from './constants';
-import playerSprite from '../assets/player1.png';
+import playerSprite from '../assets/playerFrame4.png';
 
 export default class Player {
     constructor(scene) {
