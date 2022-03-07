@@ -2,13 +2,16 @@ import Phaser from 'phaser';
 import { ARMARIO } from '../../constants';
 import objectImg from '../../assets/armario.png';
 
-import { ARMARIO_HEIGHT, ARMARIO_POSITION_X, ARMARIO_POSITION_Y, ARMARIO_WIDTH } from './constants';
+import { ARMARIO_HEIGHT, ARMARIO_POSITION_X, ARMARIO_POSITION_Y, ARMARIO_WIDTH, JASON_MASK } from './constants';
+import { setMask } from '../../../data/player/action';
 
 export default class Armario {
     constructor(scene) {
         this.scene = scene;
         this.self = {};
         this.nft_menu = null;
+        this.state = null;
+        this.maskSwitch = false;
     }
 
     preLoad (nft_menu) {
@@ -16,7 +19,7 @@ export default class Armario {
         this.scene.load.image(ARMARIO, objectImg);
     }
 
-    setSprite (state) {
+    setSprite (reducer, player) {
         this.self.sprite = this.scene.add.image(ARMARIO_POSITION_X, ARMARIO_POSITION_Y, ARMARIO);
         this.self.sprite.displayHeight = ARMARIO_HEIGHT;
         this.self.sprite.displayWidth = ARMARIO_WIDTH;
@@ -30,6 +33,20 @@ export default class Armario {
             })
             .on(Phaser.Input.Events.GAMEOBJECT_POINTER_UP, () => {
                 this.nft_menu.display ? this.nft_menu.hide() : this.nft_menu.show();
+                this.setSkin(reducer, player);
             })
+    }
+
+    setSkin (reducer, player) {
+        const state = reducer.getState();
+        if (this.maskSwitch) {
+            reducer.dispatch(setMask(null));
+            player.setMask(null);
+            this.maskSwitch = false;
+        } else {
+            reducer.dispatch(setMask(JASON_MASK));
+            player.setMask(JASON_MASK);
+            this.maskSwitch = true;
+        }
     }
 }

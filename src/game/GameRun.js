@@ -4,7 +4,7 @@ import { movePlayer } from './movement';
 import { animateMovement } from './animation';
 import Player from './player/player';
 import Map from './map/map';
-import { PLAYER } from './constants';
+import { ANIMATION_RUNNING, ANIMATION_SKIN, PLAYER, PLAYER_SKIN } from './constants';
 import { connect } from 'react-redux';
 import { getPlayerInfo } from '../data/player/selector';
 import store from '../store';
@@ -17,8 +17,8 @@ class MyGame extends Phaser.Scene {
   constructor() {
     super();
     this.reducer = store;
-    this.map = new Map(this, this.reducer);
     this.player = new Player(this);
+    this.map = new Map(this, this.reducer);
     this.life = new LifeBar(this);
     this.menu = new Menu(this);
   }
@@ -32,14 +32,21 @@ class MyGame extends Phaser.Scene {
 
   create() {
     this.cameras.main.setBackgroundColor('#FFF')
-    this.map.setSprite();
+    this.map.setSprite(this.reducer, this.player);
     this.player.setSprite();
     this.life.setSprite();
     this.menu.setSprite();
     
     this.anims.create({
-      key: 'running',
+      key: ANIMATION_RUNNING,
       frames: this.anims.generateFrameNumbers(PLAYER),
+      frameRate: 24,
+      reapeat: -1,
+    });
+
+    this.anims.create({
+      key: ANIMATION_SKIN,
+      frames: this.anims.generateFrameNumbers(PLAYER_SKIN),
       frameRate: 24,
       reapeat: -1,
     });
@@ -57,8 +64,13 @@ class MyGame extends Phaser.Scene {
   update() {
     const state = this.reducer.getState();
     // this.scene.scene.cameras.main.centerOn(this.player.self.sprite.x, this.player.self.sprite.y);
-    movePlayer(pressedKeys, this.player.self.sprite, state);
-    animateMovement(pressedKeys, this.player.self.sprite);
+    movePlayer(pressedKeys, this.player.self.body.sprite, state);
+    state.player.mask && movePlayer(pressedKeys, this.player.self.mask.sprite, state);
+    
+    animateMovement(pressedKeys, this.player.self.body.sprite, ANIMATION_RUNNING);
+    state.player.mask && animateMovement(pressedKeys, this.player.self.mask.sprite, ANIMATION_SKIN);
+
+
   }
 }
 

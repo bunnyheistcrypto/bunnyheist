@@ -35,7 +35,7 @@ export default class Map {
 
     }
 
-    setSprite () {
+    setSprite (reducer, player) {
         this.self.sprite = this.scene.add.image(0, 0, MAP);
         this.self.sprite.displayHeight = 800;
         this.self.sprite.displayWidth = 1200;
@@ -45,8 +45,7 @@ export default class Map {
         this.gunStation.setSprite('La La La');
         this.workout.setSprite('La La La');
         this.intergalaticTv.setSprite('La La La');
-        this.armario.setSprite('La La La');
+        this.armario.setSprite(reducer, player);
         this.bedMirror.setSprite('La La La');
-
     }
 }

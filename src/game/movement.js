@@ -3,16 +3,17 @@ import { mapBounds } from './mapBounds';
 import { mesaCollider } from './objects/box/utils';
 
 const otherObjectsBoundaries = (x, y, state) => {
+  return true;
   return !mesaCollider(x, y, state);
 }
 
 const isWithinMovementBoundaries = (x, y) => {
-  return true
   return !mapBounds[y] ? true : !mapBounds[y].includes(x);
 };
 
 export const movePlayer = (keys, player, state) => {
   let playerMoved = false;
+  if (!player || !player) return false;
   const absPlayerX = player.x + SHIP_WIDTH / 2;
   const absPlayerY = player.y + SHIP_HEIGHT / 2 + 20;
   if (
