@@ -14,6 +14,8 @@ export const FirstBanner = () => {
         try {
             const userAccount = await wax.login();
             console.log(userAccount);
+            console.log(wax.userAccount);
+            console.log(wax.pubKeys);
           } catch (e) {
             console.log(e.message);
           }
