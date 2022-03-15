@@ -23,15 +23,15 @@ export default class Map {
 
     }
 
-    preLoad (all_menus) {
+    preLoad (allGame) {
         this.scene.load.image(MAP, mapImg);
-        this.mesaCentro.preLoad(all_menus.menu);
-        this.bluePrint.preLoad(all_menus.menu);
-        this.gunStation.preLoad(all_menus.menu);
-        this.workout.preLoad(all_menus.menu);
-        this.intergalaticTv.preLoad(all_menus.menu);
-        this.armario.preLoad(all_menus.menu);
-        this.bedMirror.preLoad(all_menus.menu);
+        this.mesaCentro.preLoad(allGame.menu);
+        this.bluePrint.preLoad(allGame.menu);
+        this.gunStation.preLoad(allGame.menu);
+        this.workout.preLoad(allGame.menu);
+        this.intergalaticTv.preLoad(allGame.menu);
+        this.armario.preLoad(allGame.menu);
+        this.bedMirror.preLoad(allGame.menu);
 
     }
 

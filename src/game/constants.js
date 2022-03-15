@@ -16,3 +16,4 @@ export const ANIMATION_RUNNING = 'ANIMATION_RUNNING';
 export const ANIMATION_SKIN = 'ANIMATION_SKIN';
 
 export const SKIN_MENU = 'SKIN_MENU';
+export const NO_MENU = 'NO_MENU';

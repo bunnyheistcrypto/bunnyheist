@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import { ARMARIO } from '../../constants';
+import { ARMARIO, NO_MENU } from '../../constants';
 import objectImg from '../../assets/armario.png';
 
 import { ARMARIO_HEIGHT, ARMARIO_POSITION_X, ARMARIO_POSITION_Y, ARMARIO_WIDTH, JASON_MASK } from './constants';
@@ -32,10 +32,10 @@ export default class Armario {
                 this.self.sprite.setTint(0xffffff)
             })
             .on(Phaser.Input.Events.GAMEOBJECT_POINTER_UP, () => {
-                console.log(this.nft_menu.type);
-                if (this.nft_menu.type === 'None' || this.nft_menu.type === ARMARIO) {
-                    this.nft_menu.type = ARMARIO;
-                    this.nft_menu.display ? this.nft_menu.hideTest() : this.nft_menu.showTest();
+                console.log(this.nft_menu.skinMenu.type);
+                if (this.nft_menu.skinMenu.type === NO_MENU || this.nft_menu.skinMenu.type === ARMARIO) {
+                    this.nft_menu.skinMenu.type = ARMARIO;
+                    this.nft_menu.skinMenu.display ? this.nft_menu.skinMenu.hide() : this.nft_menu.skinMenu.show();
                 };
             })
     }

@@ -11,8 +11,6 @@ import { setPlayer } from '../data/player/action';
 import store from '../store';
 import LifeBar from './objects/lifeBar/lifeBar';
 import Menu from './objects/menu/menu';
-import SkinMenu from './objects/menu/skinMenu';
-
 
 let pressedKeys = [];
 
@@ -21,7 +19,6 @@ class MyGame extends Phaser.Scene {
     super();
     this.reducer = store;
     this.menu = new Menu(this);
-    this.skinMenu = new SkinMenu(this);
     this.player = new Player(this);
     this.map = new Map(this, this.reducer);
     this.life = new LifeBar(this);
