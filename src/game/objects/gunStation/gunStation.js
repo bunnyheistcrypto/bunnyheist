@@ -28,7 +28,10 @@ export default class GunStation {
                 this.self.sprite.setTint(0xffffff)
             })
             .on(Phaser.Input.Events.GAMEOBJECT_POINTER_UP, () => {
-                this.nft_menu.display ? this.nft_menu.hide() : this.nft_menu.show();
+                if (this.nft_menu.type === 'None' || this.nft_menu.type === GUN_STATION) {
+                    this.nft_menu.type = GUN_STATION;
+                    this.nft_menu.display ? this.nft_menu.hide() : this.nft_menu.show();
+                };
             })
     }
 }

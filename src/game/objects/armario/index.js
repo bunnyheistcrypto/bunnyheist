@@ -32,8 +32,11 @@ export default class Armario {
                 this.self.sprite.setTint(0xffffff)
             })
             .on(Phaser.Input.Events.GAMEOBJECT_POINTER_UP, () => {
-                this.nft_menu.display ? this.nft_menu.hide() : this.nft_menu.show();
-                this.setSkin(reducer, player);
+                console.log(this.nft_menu.type);
+                if (this.nft_menu.type === 'None' || this.nft_menu.type === ARMARIO) {
+                    this.nft_menu.type = ARMARIO;
+                    this.nft_menu.display ? this.nft_menu.hideTest() : this.nft_menu.showTest();
+                };
             })
     }
 

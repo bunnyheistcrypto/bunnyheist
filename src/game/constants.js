@@ -14,3 +14,5 @@ export const BED_MIRROR = 'BED_MIRROR';
 
 export const ANIMATION_RUNNING = 'ANIMATION_RUNNING';
 export const ANIMATION_SKIN = 'ANIMATION_SKIN';
+
+export const SKIN_MENU = 'SKIN_MENU';

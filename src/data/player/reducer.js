@@ -1,5 +1,5 @@
 import { assign } from 'lodash';
-import { SET_PLAYER_INFO, SET_PLAYER_WALLET, SET_BODY, SET_HAND, SET_HEAD, SET_MASK } from './action';
+import { SET_PLAYER_INFO, SET_PLAYER_WALLET, SET_BODY, SET_HAND, SET_HEAD, SET_MASK, SET_PLAYER } from './action';
 
 export const initialState = {
     wallet: true,
@@ -7,6 +7,7 @@ export const initialState = {
     isLoadingPlayerInfo: false,
     playerAssets: null,
     isLoadingPlayerAssets: false,
+    player: null,
     mask: null,
     head: null,
     body: null,
@@ -39,6 +40,10 @@ export const playerReducer = (state = initialState, action) => {
             return action.info 
                 ? assign({}, state, { hand: action.info })
                 : state;
+        case SET_PLAYER:
+            return action.info 
+            ? assign({}, state, { player: action.info })
+            : state;
         default:
             return state;
     }

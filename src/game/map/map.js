@@ -23,15 +23,15 @@ export default class Map {
 
     }
 
-    preLoad (nft_menu) {
+    preLoad (all_menus) {
         this.scene.load.image(MAP, mapImg);
-        this.mesaCentro.preLoad(nft_menu);
-        this.bluePrint.preLoad(nft_menu);
-        this.gunStation.preLoad(nft_menu);
-        this.workout.preLoad(nft_menu);
-        this.intergalaticTv.preLoad(nft_menu);
-        this.armario.preLoad(nft_menu);
-        this.bedMirror.preLoad(nft_menu);
+        this.mesaCentro.preLoad(all_menus.menu);
+        this.bluePrint.preLoad(all_menus.menu);
+        this.gunStation.preLoad(all_menus.menu);
+        this.workout.preLoad(all_menus.menu);
+        this.intergalaticTv.preLoad(all_menus.menu);
+        this.armario.preLoad(all_menus.menu);
+        this.bedMirror.preLoad(all_menus.menu);
 
     }
 

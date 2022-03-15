@@ -7,9 +7,12 @@ import Map from './map/map';
 import { ANIMATION_RUNNING, ANIMATION_SKIN, PLAYER, PLAYER_SKIN } from './constants';
 import { connect } from 'react-redux';
 import { getPlayerInfo } from '../data/player/selector';
+import { setPlayer } from '../data/player/action';
 import store from '../store';
 import LifeBar from './objects/lifeBar/lifeBar';
 import Menu from './objects/menu/menu';
+import SkinMenu from './objects/menu/skinMenu';
+
 
 let pressedKeys = [];
 
@@ -17,14 +20,15 @@ class MyGame extends Phaser.Scene {
   constructor() {
     super();
     this.reducer = store;
+    this.menu = new Menu(this);
+    this.skinMenu = new SkinMenu(this);
     this.player = new Player(this);
     this.map = new Map(this, this.reducer);
     this.life = new LifeBar(this);
-    this.menu = new Menu(this);
   }
 
   preload() {
-    this.map.preLoad(this.menu);
+    this.map.preLoad(this);
     this.player.preLoad();
     this.life.preLoad();
     this.menu.preLoad();
@@ -35,7 +39,7 @@ class MyGame extends Phaser.Scene {
     this.map.setSprite(this.reducer, this.player);
     this.player.setSprite();
     this.life.setSprite();
-    this.menu.setSprite();
+    this.menu.setSprite(this.reducer, this.player);
     
     this.anims.create({
       key: ANIMATION_RUNNING,
