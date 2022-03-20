@@ -28,9 +28,11 @@ export const FirstBanner = () => {
                 <img src={logo} className={'logo-image'} alt={'Bunny Heist Logo'}/>
             </Row>
             <Row align='bottom' justify='center'>
-                <div className='play-container' onClick={login}>
+                <div className='play-container' onClick={() => {window.location.href = '/game'}}>
                     <div className={isMobile ? 'play-btn play-btn-mobile' : 'play-btn play-btn-desk'} />
-                    <Button type='primary' className={isMobile ? 'play play-mobile' : 'play play-desk'}><Typography.Text>Play Now</Typography.Text></Button>        
+                    <Button type='primary' className={isMobile ? 'play play-mobile' : 'play play-desk'}>
+                        <Typography.Text>Play Now</Typography.Text>
+                    </Button>        
                     <div className={isMobile ? 'play-btn play-btn-mobile reverse' : 'play-btn play-btn-desk reverse'} />
                 </div>
             </Row>
