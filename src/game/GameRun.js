@@ -8,7 +8,7 @@ import { ANIMATION_RUNNING, ANIMATION_SKIN, PLAYER, PLAYER_SKIN } from './consta
 import { connect } from 'react-redux';
 import { getPlayerInfo } from '../data/player/selector';
 import { setPlayer } from '../data/player/action';
-import store from '../store';
+import store from '../store.js';
 import LifeBar from './objects/lifeBar/lifeBar';
 import Menu from './objects/menu/menu';
 

@@ -19,7 +19,6 @@ export default class Menu {
     preLoad () {
         this.scene.load.image(NFT_MENU, nftMenu);
         this.scene.load.image(SKIN_MENU, nftMenu);
-
     }
 
     setSprite (state, player) {
