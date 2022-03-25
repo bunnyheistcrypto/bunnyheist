@@ -1,24 +1,30 @@
-import { assign } from 'lodash';
-import { SET_PLAYER_INFO, SET_PLAYER_WALLET, SET_BODY, SET_HAND, SET_HEAD, SET_MASK, SET_PLAYER } from './action';
+import { assign, keyBy } from 'lodash';
+import { SET_PLAYER_WALLET, SET_BODY, SET_HAND, SET_HEAD, SET_MASK, SET_PLAYER, REQUESTING_INVENTARIO, RECEIVE_INVENTARIO, REQUESTING_INVENTARIO_FAILED } from './action';
 
 export const initialState = {
     wallet: true,
     playerInfo: {},
-    isLoadingPlayerInfo: false,
-    playerAssets: null,
-    isLoadingPlayerAssets: false,
-    player: null,
+    isLoadingInventario: false,
+    inventarioById: null,
     mask: null,
     head: null,
     body: null,
     hand: null,
 }
 
-export const playerReducer = (state = initialState, action) => {
+export const playerReducer = (state = initialState, action: any) => {
     switch(action.type) {
-        case SET_PLAYER_INFO:
+        case REQUESTING_INVENTARIO:
             return action.info
-                ? assign({}, state, { playerInfo: action.info, isLoadingPlayerInfo: false })
+                ? assign({}, state, { isLoadingInventario: true })
+                : state;
+        case RECEIVE_INVENTARIO:
+            return action.info
+                ? assign({}, state, { isLoadingInventario: false, inventarioById: keyBy(action.info, 'itemId') })
+                : state;
+        case REQUESTING_INVENTARIO_FAILED:
+            return action.info
+                ? assign({}, state, { isLoadingInventario: false })
                 : state;
         case SET_PLAYER_WALLET:
             return action.info
@@ -40,6 +46,10 @@ export const playerReducer = (state = initialState, action) => {
             return action.info 
                 ? assign({}, state, { hand: action.info })
                 : state;
+        case SET_PLAYER:
+            return action.info 
+            ? assign({}, state, { player: action.info })
+            : state;
         case SET_PLAYER:
             return action.info 
             ? assign({}, state, { player: action.info })

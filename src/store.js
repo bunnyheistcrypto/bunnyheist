@@ -7,8 +7,10 @@ import { userReducer } from './data/login/reducer';
 
 let middleware = [thunkMiddleware];
 
-const loggerMiddleware = createLogger();
-middleware = [...middleware, loggerMiddleware];
+if (process.env.NODE_ENV !== 'production') {
+    const loggerMiddleware = createLogger();
+    middleware = [...middleware, loggerMiddleware];
+}
 
 const reducer = combineReducers({
     player: playerReducer,

@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchUserdata } from '../data/login/action';
 import { useCurrentBreakpoint } from '../hooks';
@@ -7,11 +7,16 @@ import { Button, Row, Typography, Col } from "antd";
 import * as waxjs from '@waxio/waxjs/dist';
 import logo from '../gltf/logo.png'
 import './Home.css';
+import { listInventario } from '../data/player/action';
 
 export const FirstBanner = () => {
     const { isMobile } = useCurrentBreakpoint();
     const wax = new waxjs.WaxJS("https://wax.greymass.com");
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(listInventario('aaaa', '2'));
+    }, [])
 
     const login = async () => {
         try {
