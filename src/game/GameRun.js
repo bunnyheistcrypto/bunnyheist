@@ -1,105 +1,40 @@
-import Phaser from 'phaser';
-import { Plugin as NineSlicePlugin } from 'phaser3-nineslice'
-import { movePlayer } from './movement';
-import { animateMovement } from './animation';
-import Player from './player/player';
-import Map from './map/map';
-import { ANIMATION_RUNNING, ANIMATION_SKIN, PLAYER, PLAYER_SKIN } from './constants';
-import { connect } from 'react-redux';
-import { getPlayerInfo } from '../data/player/selector';
-import { setPlayer } from '../data/player/action';
-import store from '../store.js';
-import LifeBar from './objects/lifeBar/lifeBar';
-import Menu from './objects/menu/menu';
 
-let pressedKeys = [];
+import React, { useState } from 'react';
+import { useCurrentBreakpoint } from './hooks';
+import { Layout, Menu } from 'antd';
+import { MenuOutlined } from '@ant-design/icons';
 
-class MyGame extends Phaser.Scene {
-  constructor() {
-    super();
-    this.reducer = store;
-    this.menu = new Menu(this);
-    this.player = new Player(this);
-    this.map = new Map(this, this.reducer);
-    this.life = new LifeBar(this);
-  }
+import { HomePageLayout } from './home/HomePageLayout';
+import { FaqsLayout } from './faqs/FaqsLayout';
+import { CollectionsLayout } from './collections/CollectionsLayout';
 
-  preload() {
-    this.map.preLoad(this);
-    this.player.preLoad();
-    this.life.preLoad();
-    this.menu.preLoad();
-  }
+const { Content, Footer, Header } = Layout;
 
-  create() {
-    this.cameras.main.setBackgroundColor('#FFF')
-    this.map.setSprite(this.reducer, this.player);
-    this.player.setSprite();
-    this.life.setSprite();
-    this.menu.setSprite(this.reducer, this.player);
-    
-    this.anims.create({
-      key: ANIMATION_RUNNING,
-      frames: this.anims.generateFrameNumbers(PLAYER),
-      frameRate: 24,
-      reapeat: -1,
-    });
+export const GameRun = () => {
+  const { isMobile } = useCurrentBreakpoint();
+  const [navbar, setNavbar] = useState('1');
 
-    this.anims.create({
-      key: ANIMATION_SKIN,
-      frames: this.anims.generateFrameNumbers(PLAYER_SKIN),
-      frameRate: 24,
-      reapeat: -1,
-    });
+  return (
+    <Layout className="site-layout" style={{ overflow: 'auto' }}>
+        <Header className={isMobile ? 'mobile-app-header' : 'App-header'}>
+            <Menu theme="dark" mode="horizontal" defaultSelectedKeys={[navbar]} onClick={(e) => setNavbar(e.key)} overflowedIndicator={<MenuOutlined />} >
+                <Menu.Item key={1}>Home</Menu.Item>
+                <Menu.Item key={2}>Play</Menu.Item>
+                <Menu.Item key={6}>FAQs</Menu.Item>
+                <Menu.Item key={3}>Collections</Menu.Item>
+                <Menu.Item key={4}>Road Map</Menu.Item>
+                <Menu.Item key={5}>White Paper</Menu.Item>
+            </Menu>
+        </Header>
+        <Content className="site-layout-background">
+            {navbar === '6' && <FaqsLayout />}
+            {navbar === '1' && <HomePageLayout />}
+            {navbar === '3' && <CollectionsLayout />}
 
-    this.input.keyboard.on('keydown', (e) => {
-      if (!pressedKeys.includes(e.code)) {
-        pressedKeys.push(e.code);
-      }
-    });
-    this.input.keyboard.on('keyup', (e) => {
-      pressedKeys = pressedKeys.filter((key) => key !== e.code);
-    });
-  }
-
-  update() {
-    const state = this.reducer.getState();
-    // this.scene.scene.cameras.main.centerOn(this.player.self.sprite.x, this.player.self.sprite.y);
-    movePlayer(pressedKeys, this.player.self.body.sprite, state);
-    state.player.mask && movePlayer(pressedKeys, this.player.self.mask.sprite, state);
-    
-    animateMovement(pressedKeys, this.player.self.body.sprite, ANIMATION_RUNNING);
-    state.player.mask && animateMovement(pressedKeys, this.player.self.mask.sprite, ANIMATION_SKIN);
-
-
-  }
+        </Content>
+        <Footer style={{ fontFamily: 'grobold' }}>COPYRIGHT BUNNY HEIST 2022. ALL RIGHTS RESERVED.</Footer>
+    </Layout>
+  );
 }
 
-const mapStateToProps = state => ({
-  playerInfo: getPlayerInfo(state),
-})
-
-export default connect(mapStateToProps, null)(MyGame)
-
-export const config = {
-  type: Phaser.AUTO,
-  backgroundColor: '#2dab2d',
-  scale: {
-      mode: Phaser.Scale.FIT,
-      width: 1200,
-      height: 800,
-      min: {
-          width: 800,
-          height: 600
-      },
-      max: {
-          width: 1600,
-          height: 800
-      }
-  },
-  parent: 'game-here',
-  plugins: {
-    global: [ NineSlicePlugin.DefaultCfg ],
-  },
-  scene: MyGame,
-};
+export default GameRun;

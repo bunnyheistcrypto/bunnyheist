@@ -14,17 +14,14 @@ export const FirstBanner = () => {
     const wax = new waxjs.WaxJS("https://wax.greymass.com");
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(listInventario('aaaa', '2'));
-    }, [])
-
     const login = async () => {
+
         try {
-            dispatch(fetchUserdata('cc', 'cc'));
             const userAccount = await wax.login();
-            console.log(userAccount);
-            console.log(wax.userAccount);
-            console.log(wax.pubKeys);
+            // dispatch(fetchUserdata('cc', 'cc'));
+            // console.log(userAccount);
+            // console.log(wax.userAccount);
+            // console.log(wax.pubKeys);
           } catch (e) {
             console.log(e.message);
           }

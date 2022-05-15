@@ -6,10 +6,8 @@ import { useCurrentBreakpoint } from './hooks';
 import { Button, Layout, Menu, Col, Row, Typography } from 'antd';
 import { MenuOutlined } from '@ant-design/icons';
 
-import { config } from './game/GameRun';
 import { getWallet } from './data/player/selector';
 import { LoginModal } from './login/LoginModal';
-import './game/Game.css';
 import { setPlayerWallet } from './data/player/action';
 
 
@@ -27,11 +25,6 @@ export const AppGame = () => {
     dispatch(setPlayerWallet(true))
   }
 
-  useEffect(() => {
-    if(playerWallet) {
-      new Phaser.Game(config);
-    }
-  },[playerWallet, isLoginVisible])
   return (
     <Layout className="site-layout" style={{ overflow: 'auto' }}>
       {!playerWallet &&
