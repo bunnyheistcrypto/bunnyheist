@@ -1,13 +1,11 @@
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
-import { fetchUserdata } from '../data/login/action';
 import { useCurrentBreakpoint } from '../hooks';
 import { Button, Row, Typography, Col } from "antd";
 import * as waxjs from '@waxio/waxjs/dist';
 import logo from '../gltf/logo.png'
 import './Home.css';
-import { listInventario } from '../data/player/action';
 
 export const FirstBanner = () => {
     const { isMobile } = useCurrentBreakpoint();

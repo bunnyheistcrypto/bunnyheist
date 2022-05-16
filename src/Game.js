@@ -1,6 +1,5 @@
 
-import React, { useEffect, useState } from 'react';
-import Phaser from 'phaser';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useCurrentBreakpoint } from './hooks';
 import { Button, Layout, Menu, Col, Row, Typography } from 'antd';

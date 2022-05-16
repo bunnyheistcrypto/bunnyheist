@@ -5,8 +5,7 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
-import { Layout, Spin } from 'antd';
-import { LoadingOutlined } from '@ant-design/icons';
+import { Layout } from 'antd';
 
 import { AppGame } from './Game';
 import { WebPage } from './WebPage';
