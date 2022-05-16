@@ -7,7 +7,6 @@ import {
 } from "react-router-dom";
 import { Layout } from 'antd';
 
-import { AppGame } from './Game';
 import { WebPage } from './WebPage';
 
 import './Loading.css';
@@ -38,11 +37,8 @@ export const App = () => {
           </div>
           <Content className={`site-layout-background  ${loadingState ? 'hidden' : 'visible'}`}>
                 <Switch>
-                  <Route path="/" exact >
+                  <Route>
                     <WebPage />
-                  </Route>
-                  <Route path="/game" exact >
-                    <AppGame />
                   </Route>
                 </Switch>
             </Content>
